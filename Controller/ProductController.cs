@@ -16,9 +16,7 @@ namespace NewApp.Controllers
         public IActionResult Post([FromBody] string statement)
         {
             Console.WriteLine("Post method called");
-            Console.WriteLine(CheckParanthesis.IsValid(statement) ? "Valid" : "Not Valid");
-
-            return Ok();
+            return Ok(CheckParanthesis.IsValid(statement) ? "Valid" : "Not Valid");
         }
     }
         
