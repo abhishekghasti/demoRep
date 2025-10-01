@@ -1,4 +1,4 @@
-name: Publish to Azure WebApps
+name: PublishToAzureWebApps
 
 on: 
   workflow_dispatch: 
