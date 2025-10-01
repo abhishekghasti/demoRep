@@ -1,10 +1,14 @@
-name: PublishToAzureWebApps
+name: Publish to Azure WebApps
 
 on: 
   workflow_dispatch: 
   push: 
     branches: 
       main
+
+env: 
+  AZURE_WEBAPP_NAME: ais-wa-practiceWebApp
+  AZURE_WEBAPP_PACKAGE_PATH: "/.publish"
 
 jobs:
   publish:
@@ -16,7 +20,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '6.0.x'
 
       - name: Restore
         run: dotnet restore ./NewApp.sln
@@ -25,4 +29,12 @@ jobs:
         run: dotnet build ./NewApp.sln --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish ./NewApp.sln --configuration Release --no-build
+        run: dotnet publish ./NewApp.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+      
+      - name: Deployment
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ''
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
