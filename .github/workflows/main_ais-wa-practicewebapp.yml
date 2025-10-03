@@ -50,7 +50,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'ais-wa-practiceWebApp'
-          slot-name: 'Development'
           package: .
 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_289BB572E7824317B1DFC36F20E73261 }}
+
