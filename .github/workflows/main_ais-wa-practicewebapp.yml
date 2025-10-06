@@ -3,11 +3,6 @@
 
 name: Build and deploy ASP.Net Core app to Azure Web App - ais-wa-practiceWebApp
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
 
 jobs:
   build:
@@ -53,4 +48,5 @@ jobs:
           package: .
 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_289BB572E7824317B1DFC36F20E73261 }}
+
 
